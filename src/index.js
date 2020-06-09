@@ -1,9 +1,11 @@
 
 
 function Thermostat() {
-    const DEFAULT_TEMP = 20;
+    this.DEFAULT_TEMP = 20;
+    this.MINIMUM_TEMP = 10;
     
-    this.temperature = DEFAULT_TEMP;
+    this.temperature = this.DEFAULT_TEMP;
+    this.powerSavingMode = true;
 };
 
 Thermostat.prototype.currentTemperature = function() {
@@ -17,17 +19,33 @@ Thermostat.prototype.up = function(temp) {
 };
 
 Thermostat.prototype.down = function(temp) {
-    const MINIMUM_TEMP = 10;
-    if ((this.temperature - temp) < MINIMUM_TEMP){ 
-    throw new Error("Cannot reduce past minimum temperature!")
+    if ((this.temperature - temp) < this.MINIMUM_TEMP) { 
+        throw new Error("Cannot reduce past minimum temperature!")
     } 
     else {
-        
         this.temperature -= temp
-    }
-    
+    }  
 };
 
+Thermostat.prototype.currentPowerMode = function() {
 
+    return this.powerSavingMode;
+};
 
+Thermostat.prototype.getMaxTemp = function() {
+
+    if (this.powerSavingMode === true) {
+
+        return 25;
+
+    } else {
+       
+        return 32;
+    }
+};
+
+Thermostat.prototype.switchPowerMode = function() {
+
+    this.powerSavingMode = false;
+};
 
