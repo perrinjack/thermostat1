@@ -25,4 +25,9 @@ describe('Thermostat', function() {
   
   });
 
+  it('prevents temperature being reduced below minimum value', function(){
+    expect( function() {thermostat.down(15)}).toThrow(new Error("Cannot reduce past minimum temperature!"));
+    
+  });
+
 });
