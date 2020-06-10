@@ -11,7 +11,9 @@ Thermostat.prototype.currentTemperature = function () {
 };
 
 Thermostat.prototype.up = function () {
-  if (this.temperature === this.MAX_TEMP) {
+  var max_temp = this.getMaxTemp()
+  console.log(max_temp)
+  if (this.temperature === max_temp) {
     return;
   }
 
@@ -32,9 +34,9 @@ Thermostat.prototype.currentPowerMode = function () {
 
 Thermostat.prototype.getMaxTemp = function () {
   if (this.powerSavingMode === true) {
-    return (this.MAX_TEMP === 25);
+    return  25;
   } else {
-    return this.MAX_TEMP === 32;
+    return  32;
    
   }
   // return this.MAX_TEMP;
