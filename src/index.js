@@ -1,7 +1,7 @@
 function Thermostat() {
   this.DEFAULT_TEMP = 20;
   this.MINIMUM_TEMP = 10;
-  this.MAX_TEMP = 25;
+  this.MAX_TEMP = 32;
   this.temperature = this.DEFAULT_TEMP;
   this.powerSavingMode = true;
 }
@@ -32,10 +32,10 @@ Thermostat.prototype.currentPowerMode = function () {
 
 Thermostat.prototype.getMaxTemp = function () {
   if (this.powerSavingMode === true) {
-    return (this.MAX_TEMP = 25);
+    return (this.MAX_TEMP === 25);
   } else {
-    this.MAX_TEMP = 32;
-    return this.MAX_TEMP;
+    return this.MAX_TEMP === 32;
+   
   }
   // return this.MAX_TEMP;
 };
