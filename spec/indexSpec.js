@@ -43,14 +43,14 @@ describe('Thermostat', function() {
 
   it('switch power saving mode on to false' ,function() { 
 
-    thermostat.switchPowerMode();
+    thermostat.switchPowerModeOff();
     expect(thermostat.currentPowerMode()).toEqual(false);
 
   });
 
   it('it sets maximum temperature to 32 degrees when is power saving mode is false' ,function() { 
 
-    thermostat.switchPowerMode();
+    thermostat.switchPowerModeOff();
     expect(thermostat.getMaxTemp()).toEqual(32);
 
   });

@@ -44,7 +44,7 @@ Thermostat.prototype.getMaxTemp = function() {
     }
 };
 
-Thermostat.prototype.switchPowerMode = function() {
+Thermostat.prototype.switchPowerModeOff = function() {
 
     this.powerSavingMode = false;
 };
