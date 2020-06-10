@@ -14,12 +14,11 @@ Thermostat.prototype.currentTemperature = function() {
 };
 
 Thermostat.prototype.up = function() {
-    if ((this.temperature) > this.MAX_TEMP) { 
-        throw new Error("Cannot increase past minimum max temperature!")
-    } 
-    else {
+    if ((this.temperature) === this.MAX_TEMP) { return;
+    }
+    
     this.temperature += 1
-}
+
 };
 
 Thermostat.prototype.down = function() {
@@ -40,22 +39,43 @@ Thermostat.prototype.getMaxTemp = function() {
 
     if (this.powerSavingMode === true) {
         
-        this.MAX_TEMP = 25;
+     return   this.MAX_TEMP = 25;
 
     } else {
        
         this.MAX_TEMP = 32;
+     return   this.MAX_TEMP;
     }
-    return this.MAX_TEMP;
+    // return this.MAX_TEMP;
 };
 
 Thermostat.prototype.switchPowerModeOff = function() {
 
-    this.powerSavingMode = false;
+   return this.powerSavingMode = false;
 };
 
 Thermostat.prototype.switchPowerModeOn = function() {
 
-    this.powerSavingMode = true;
+   return this.powerSavingMode = true;
 };
 
+
+Thermostat.prototype.reset = function() {
+
+    this.temperature = this.DEFAULT_TEMP;
+};
+
+Thermostat.prototype.energyUsage = function() {
+  if (this.temperature < 18){
+    return "low-usage";
+  } 
+  else if 
+      (this.temperature < 25){
+    return "medium-usage";
+   }
+   else
+   {
+    return "high-usage"; 
+  }    
+
+}

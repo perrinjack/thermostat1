@@ -67,10 +67,31 @@ describe('Thermostat', function() {
   });
 
   it('prevents temperature being increased over max temperature', function() {
-    for(var i = 0; i < 6; i++) { thermostat.up()}
-    expect( function() {thermostat.up()}).toThrow(new Error("Cannot increase past minimum max temperature!"));
+    for(var i = 0; i < 7; i++) { thermostat.up()}
+    expect(thermostat.currentTemperature()).toEqual(25);
     
   });
+
+  it('reset temperature to default 20 degree', function() {
+    for (var i = 0; i < 6; i++) { thermostat.up()} 
+    thermostat.reset();
+    expect(thermostat.currentTemperature()).toEqual(20);
+  });
+
+  it('return low usage if current temperature is below 18', function(){
+    for (var i = 0; i < 4; i++) { thermostat.down()}
+    expect(thermostat.energyUsage()).toEqual("low-usage");
+  });
+
+  it('return medium usage if current temperature is between 18 and 25', function(){
+    expect(thermostat.energyUsage()).toEqual("medium-usage");
+  });
+
+  it('return high usage if current temperature is above 25', function(){
+   console.log(thermostat.switchPowerModeOff())
+    for ( var i=0; i<7; i++) { thermostat.up()}
+    expect(thermostat.energyUsage()).toEqual("high-usage");
+  })
 
 
   });
