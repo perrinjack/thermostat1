@@ -36,11 +36,7 @@ describe('Thermostat', function() {
     expect(thermostat.currentPowerMode()).toEqual(true);
   });
 
-  it('it sets maximum temperature to 25 degrees when power saving mode is true',function() { 
-
-    expect(thermostat.getMaxTemp()).toEqual(25);
-    
-  });
+ 
 
   it('switch power saving mode off to false' ,function() { 
 
@@ -57,6 +53,12 @@ describe('Thermostat', function() {
 
   });
 
+  it('it sets maximum temperature to 25 degrees when power saving mode is true',function() { 
+
+    expect(thermostat.getMaxTemp()).toEqual(25);
+    
+  });
+
   it('it sets maximum temperature to 32 degrees when is power saving mode is false' ,function() { 
 
     thermostat.switchPowerModeOff();
@@ -64,4 +66,11 @@ describe('Thermostat', function() {
 
   });
 
-});
+  it('prevents temperature being increased over max temperature', function() {
+    for(var i = 0; i < 6; i++) { thermostat.up()}
+    expect( function() {thermostat.up()}).toThrow(new Error("Cannot increase past minimum max temperature!"));
+    
+  });
+
+
+  });
