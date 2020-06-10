@@ -13,17 +13,17 @@ Thermostat.prototype.currentTemperature = function() {
     return this.temperature;
 };
 
-Thermostat.prototype.up = function(temp) {
+Thermostat.prototype.up = function() {
 
-    this.temperature += temp
+    this.temperature += 1
 };
 
-Thermostat.prototype.down = function(temp) {
-    if ((this.temperature - temp) < this.MINIMUM_TEMP) { 
+Thermostat.prototype.down = function() {
+    if ((this.temperature) < this.MINIMUM_TEMP) { 
         throw new Error("Cannot reduce past minimum temperature!")
     } 
     else {
-        this.temperature -= temp
+        this.temperature -= 1
     }  
 };
 
@@ -47,5 +47,10 @@ Thermostat.prototype.getMaxTemp = function() {
 Thermostat.prototype.switchPowerModeOff = function() {
 
     this.powerSavingMode = false;
+};
+
+Thermostat.prototype.switchPowerModeOn = function() {
+
+    this.powerSavingMode = true;
 };
 

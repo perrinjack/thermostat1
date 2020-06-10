@@ -11,22 +11,23 @@ describe('Thermostat', function() {
     expect(thermostat.currentTemperature()).toEqual(20);
   });
 
-  it('increases temperature by value of argument', function(){
+  it('increases temperature by 1 unit', function(){
   
-    thermostat.up(5);
-    expect(thermostat.currentTemperature()).toEqual(25);
+    thermostat.up();
+    expect(thermostat.currentTemperature()).toEqual(21);
 
   });
 
-  it('decreases temperature by value of argument', function(){
+  it('decreases temperature by 1 unit', function(){
 
-    thermostat.down(5);
-    expect(thermostat.currentTemperature()).toEqual(15);
+    thermostat.down();
+    expect(thermostat.currentTemperature()).toEqual(19);
   
   });
 
   it('prevents temperature being reduced below minimum value', function(){
-    expect( function() {thermostat.down(15)}).toThrow(new Error("Cannot reduce past minimum temperature!"));
+    for(var i = 0; i < 11; i++) { thermostat.down()}
+    expect( function() {thermostat.down()}).toThrow(new Error("Cannot reduce past minimum temperature!"));
     
   });
 
@@ -41,10 +42,18 @@ describe('Thermostat', function() {
     
   });
 
-  it('switch power saving mode on to false' ,function() { 
+  it('switch power saving mode off to false' ,function() { 
 
     thermostat.switchPowerModeOff();
     expect(thermostat.currentPowerMode()).toEqual(false);
+
+  });
+
+  it('switch power saving mode back on to true' ,function() { 
+
+    thermostat.switchPowerModeOff();
+    thermostat.switchPowerModeOn();
+    expect(thermostat.currentPowerMode()).toEqual(true);
 
   });
 
