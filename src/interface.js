@@ -3,6 +3,7 @@
 
 
    var thermostat = new Thermostat();
+
 $('#temperature').text(thermostat.temperature);
 
  $('#up_button').on('click', function() { // event listener
@@ -23,7 +24,14 @@ $('#temperature').text(thermostat.temperature);
 
   $('#P_MODE_OFF').on('click', function(){
     thermostat.switchPowerModeOff();
-    $('#temperature').text(thermostat.powerSavingMode);
+    $('#power-saving-status').text("off")
+    $('#temperature').text(thermostat.temperature);
+  })
+
+  $('#P_MODE_ON').on('click', function(){
+    thermostat.switchPowerModeOn();
+    $('#power-saving-status').text("on")
+    $('#temperature').text(thermostat.temperature);
   })
 
  
